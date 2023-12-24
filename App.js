@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState('');
+  const [courseGoals, setCourseGoals] = useState([]);
 
   {/* 사용자 입력값 가져오기 */ }
   function goalInputHandler(enteredText) {
@@ -12,7 +13,7 @@ export default function App() {
 
   {/* 버튼 누르면 작동 */ }
   function addGoalHandler() {
-    console.log(enteredGoalText);
+    setCourseGoals(currentCourseGoals => [...courseGoals, enteredGoalText]);
   };
 
   return (
@@ -24,7 +25,7 @@ export default function App() {
       </View>
       <View style={styles.goalsContainer}>
         {/* 목표 출력 */}
-        <Text>List of goals...</Text>
+        {courseGoals.map((goal) => <Text key={goal}>{goal}</Text>)}
       </View>
     </View>
   );
